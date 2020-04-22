@@ -1,71 +1,40 @@
 import React from "react";
-import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
+import { useMenuContext } from "../../state";
+import { useScrollFreeze } from "../../hooks";
 import NavLinks from "./NavLinks";
 
-const MobileNavbar = ({ isOpen, setOpen }) => {
+const MobileNavbar = () => {
+  const { isMenuOpen } = useMenuContext();
+  useScrollFreeze(isMenuOpen);
   return (
-    <MobileNav isOpen={isOpen}>
-      <NavLinks setOpen={setOpen} />
-    </MobileNav>
+    <AnimatePresence>
+      {isMenuOpen && (
+        <MobileNav
+          isOpen={isMenuOpen}
+          initial={{ x: "-105%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "-105%" }}
+          transition={{ damping: 200 }}
+        >
+          <NavLinks />
+        </MobileNav>
+      )}
+    </AnimatePresence>
   );
-};
-
-MobileNavbar.propTypes = {
-  isOpen: PropTypes.bool,
-  setOpen: PropTypes.func,
 };
 
 export default MobileNavbar;
 
-const MobileNav = styled.nav`
+const MobileNav = styled(motion.nav)`
   position: absolute;
-  top: 10vh;
+  top: 62px;
   left: 0;
   height: 100%;
   width: 100%;
-  background: ${(props) => props.theme.primary};
+  background: ${(props) => props.theme.bg};
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 150ms ease;
-  opacity: 0;
-  ${(props) =>
-    props.isOpen &&
-    css`
-      opacity: 1;
-      z-index: 98;
-    `}
-
-  .nav-links {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-
-    li {
-      padding: 12px;
-    }
-  }
-
-  .link {
-    position: relative;
-    color: white;
-    font-size: 24px;
-    text-decoration: none;
-
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      height: 2px;
-      width: 0;
-      background: white;
-      transition: width 150ms linear;
-    }
-    &:hover::before {
-      width: 100%;
-    }
-  }
 `;

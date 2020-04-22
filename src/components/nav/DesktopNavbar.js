@@ -1,22 +1,22 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useMenuContext } from "../../state";
 import { Squash as Hamburger } from "hamburger-react";
 import NavLinks from "./NavLinks";
 
-const DesktopNavbar = ({ isOpen, setOpen }) => {
+const DesktopNavbar = () => {
+  const { isMenuOpen, toggleMenu } = useMenuContext();
+
   return (
     <DesktopNav>
-      <div className="logo">Logo</div>
+      <Link to="/" className="logo">
+        Logo
+      </Link>
       <NavLinks />
-      <Hamburger toggled={isOpen} toggle={setOpen} />
+      <Hamburger toggled={isMenuOpen} toggle={toggleMenu} />
     </DesktopNav>
   );
-};
-
-DesktopNavbar.propTypes = {
-  isOpen: PropTypes.bool,
-  setOpen: PropTypes.func,
 };
 
 export default DesktopNavbar;
@@ -24,53 +24,28 @@ export default DesktopNavbar;
 const DesktopNav = styled.nav`
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 
-  background: ${(props) => props.theme.primary};
-  color: white;
+  background: ${(props) => props.theme.bg};
+  color: ${(props) => props.theme.text};
 
-  height: 10vh;
+  height: 64px;
   padding: 0 60px;
 
+  @media screen and (max-width: 768px) {
+    justify-content: space-between;
+    padding: 0 30px;
+  }
+
   .logo {
-    font-size: 5vh;
+    color: ${(props) => props.theme.text};
+    font-size: 32px;
   }
 
   .nav-links {
-    display: flex;
-    justify-content: center;
-    width: 35vw;
-    list-style: none;
-
     @media screen and (max-width: 768px) {
       display: none;
-    }
-
-    li {
-      &:not(:last-child) {
-        margin-right: 26px;
-      }
-    }
-  }
-
-  .link {
-    position: relative;
-    color: white;
-    text-decoration: none;
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      height: 2px;
-      width: 0;
-      background: white;
-      transition: width 150ms linear;
-    }
-    &:hover::before {
-      width: 100%;
     }
   }
 
