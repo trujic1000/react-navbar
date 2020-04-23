@@ -1,9 +1,13 @@
 :root {
   --text: #fff;
   --bg: #232323;
+  --headerBg: #1c1c1c;
+  --headerBoxShadow: rgba(0, 0, 0, 0.8) 0 1px 4px;
 }
 
 body.light {
   --text: #000;
   --bg: #f6f7f8;
+  --headerBg: #fff;
+  --headerBoxShadow: rgba(0, 0, 0, 0.15) 0 1px 4px;
 }

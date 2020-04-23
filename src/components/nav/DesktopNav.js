@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useMenuContext } from "../../state";
 import { Squash as Hamburger } from "hamburger-react";
 import NavLinks from "./DesktopNavLinks";
+import { useScroll } from "../../hooks";
 
 const DesktopNavbar = () => {
   const { isMenuOpen, toggleMenu } = useMenuContext();
-
+  const { isScrolled } = useScroll();
   return (
-    <DesktopNav>
+    <DesktopNav isScrolled={isScrolled}>
       <Link to="/" className="logo">
         Logo
       </Link>
@@ -30,6 +31,17 @@ const DesktopNav = styled.nav`
   background: var(--bg);
   color: var(--text);
 
+  ${(props) =>
+    props.isScrolled &&
+    css`
+      background: var(--headerBg);
+      box-shadow: var(--headerBoxShadow);
+    `}
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 64px;
   padding: 0 60px;
 
