@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMenuContext } from "../../state";
 import { useScrollFreeze } from "../../hooks";
-import NavLinks from "./NavLinks";
+import NavLinks from "./MobileNavLinks";
 
 const MobileNavbar = () => {
   const { isMenuOpen } = useMenuContext();

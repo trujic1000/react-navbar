@@ -1,12 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useMenuContext } from "../../state";
-
-// TODO: Split nav links to desktop and mobile
-
-const links = ["home", "about", "contact"];
+import { useMenuContext, useThemeContext } from "../../state";
+import { links, NavLink } from "./DesktopNavLinks";
+import Icon from "../Icon";
 
 const ulVariants = {
   open: {
@@ -31,8 +28,9 @@ const liVariants = {
   closed: { y: -20, opacity: 0 },
 };
 
-const NavLinks = () => {
+const MobileNavLinks = () => {
   const { closeMenu } = useMenuContext();
+  const { theme, toggleTheme } = useThemeContext();
   return (
     <NavLinksWrapper
       className="nav-links"
@@ -42,16 +40,26 @@ const NavLinks = () => {
     >
       {links.map((link) => (
         <motion.li key={link} variants={liVariants}>
-          <Link to={`/${link}`} className="link" onClick={closeMenu}>
+          <NavLink to={`/${link}`} className="link" onClick={closeMenu}>
             {link}
-          </Link>
+          </NavLink>
         </motion.li>
       ))}
+      <motion.li
+        variants={liVariants}
+        initial="closed"
+        animate="open"
+        transition={{ delay: 1.4 }}
+      >
+        <button onClick={toggleTheme}>
+          <Icon name={theme === "dark" ? "day" : "night"} />
+        </button>
+      </motion.li>
     </NavLinksWrapper>
   );
 };
 
-export default NavLinks;
+export default MobileNavLinks;
 
 const NavLinksWrapper = styled(motion.ul)`
   display: flex;
@@ -72,24 +80,10 @@ const NavLinksWrapper = styled(motion.ul)`
     }
   }
 
-  .link {
-    position: relative;
-    color: white;
-    text-decoration: none;
-    text-transform: capitalize;
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      height: 2px;
-      width: 0;
-      background: white;
-      transition: width 150ms linear;
-    }
-    &:hover::before {
-      width: 100%;
-    }
+  button {
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
   }
 `;

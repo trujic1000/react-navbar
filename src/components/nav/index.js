@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import DesktopNavbar from "./DesktopNavbar";
-import MobileNavbar from "./MobileNavbar";
+import DesktopNav from "./DesktopNav";
+import MobileNav from "./MobileNav";
 
 const Navbar = () => {
   return (
     <Nav>
-      <DesktopNavbar />
-      <MobileNavbar />
+      <DesktopNav />
+      <MobileNav />
     </Nav>
   );
 };

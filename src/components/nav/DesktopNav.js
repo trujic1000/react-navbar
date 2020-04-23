@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useMenuContext } from "../../state";
 import { Squash as Hamburger } from "hamburger-react";
-import NavLinks from "./NavLinks";
+import NavLinks from "./DesktopNavLinks";
 
 const DesktopNavbar = () => {
   const { isMenuOpen, toggleMenu } = useMenuContext();
@@ -24,7 +24,7 @@ export default DesktopNavbar;
 const DesktopNav = styled.nav`
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
 
   background: ${(props) => props.theme.bg};
@@ -39,6 +39,7 @@ const DesktopNav = styled.nav`
   }
 
   .logo {
+    flex: 2;
     color: ${(props) => props.theme.text};
     font-size: 32px;
   }
@@ -52,6 +53,9 @@ const DesktopNav = styled.nav`
   .hamburger-react {
     display: none;
     z-index: 99;
+    & > div > div {
+      background: ${(props) => props.theme.text} !important;
+    }
     @media screen and (max-width: 768px) {
       display: block;
     }
