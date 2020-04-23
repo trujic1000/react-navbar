@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useMenuContext, useThemeContext } from "../../state";
+import { useMenuContext } from "../../state";
+import { useTheme } from "../../hooks";
 import Icon from "../Icon";
 
 export const links = ["home", "about", "contact"];
 
 const DesktopNavLinks = () => {
   const { closeMenu } = useMenuContext();
-  const { theme, toggleTheme } = useThemeContext();
+  const [theme, toggleTheme] = useTheme();
 
   return (
     <NavLinksWrapper className="nav-links">
@@ -58,7 +59,7 @@ export const NavLink = styled(Link)`
   color: white;
   text-decoration: none;
   text-transform: capitalize;
-  color: ${(props) => props.theme.text};
+  color: var(--text);
   &::before {
     content: "";
     display: block;
@@ -67,7 +68,7 @@ export const NavLink = styled(Link)`
     bottom: -2px;
     height: 2px;
     width: 0;
-    background: ${(props) => props.theme.text};
+    background: var(--text);
     transition: width 150ms linear;
   }
   &:hover::before {

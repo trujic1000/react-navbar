@@ -33,7 +33,7 @@ const MobileNav = styled(motion.nav)`
   left: 0;
   height: 100%;
   width: 100%;
-  background: ${(props) => props.theme.bg};
+  background: var(--bg);
   display: flex;
   justify-content: center;
   align-items: center;

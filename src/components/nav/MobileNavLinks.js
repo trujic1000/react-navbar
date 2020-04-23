@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useMenuContext, useThemeContext } from "../../state";
+import { useMenuContext } from "../../state";
+import { useTheme } from "../../hooks";
 import { links, NavLink } from "./DesktopNavLinks";
 import Icon from "../Icon";
 
@@ -30,7 +31,7 @@ const liVariants = {
 
 const MobileNavLinks = () => {
   const { closeMenu } = useMenuContext();
-  const { theme, toggleTheme } = useThemeContext();
+  const [theme, toggleTheme] = useTheme();
   return (
     <NavLinksWrapper
       className="nav-links"

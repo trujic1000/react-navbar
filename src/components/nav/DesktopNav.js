@@ -27,8 +27,8 @@ const DesktopNav = styled.nav`
   justify-content: space-around;
   align-items: center;
 
-  background: ${(props) => props.theme.bg};
-  color: ${(props) => props.theme.text};
+  background: var(--bg);
+  color: var(--text);
 
   height: 64px;
   padding: 0 60px;
@@ -40,7 +40,7 @@ const DesktopNav = styled.nav`
 
   .logo {
     flex: 2;
-    color: ${(props) => props.theme.text};
+    color: var(--text);
     font-size: 32px;
   }
 
@@ -54,7 +54,7 @@ const DesktopNav = styled.nav`
     display: none;
     z-index: 99;
     & > div > div {
-      background: ${(props) => props.theme.text} !important;
+      background: var(--text) !important;
     }
     @media screen and (max-width: 768px) {
       display: block;
