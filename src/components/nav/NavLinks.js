@@ -52,6 +52,14 @@ const NavLinksWrapper = styled.ul`
     border: none;
     cursor: pointer;
   }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    li {
+      padding: 12px;
+      margin: 0 !important;
+    }
+  }
 `;
 
 export const NavLink = styled(Link)`

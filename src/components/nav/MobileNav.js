@@ -1,35 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
 import { useMenuContext } from "../../state";
 import { useScrollFreeze } from "../../hooks";
-import NavLinks from "./MobileNavLinks";
+import NavLinks from "./NavLinks";
 
 const MobileNavbar = () => {
   const { isMenuOpen } = useMenuContext();
   useScrollFreeze(isMenuOpen);
   return (
-    <AnimatePresence>
+    <>
       {isMenuOpen && (
-        <MobileNav
-          isOpen={isMenuOpen}
-          initial={{ x: "-105%" }}
-          animate={{ x: 0 }}
-          exit={{ x: "-105%" }}
-          transition={{ damping: 200 }}
-        >
+        <MobileNav>
           <NavLinks />
         </MobileNav>
       )}
-    </AnimatePresence>
+    </>
   );
 };
 
 export default MobileNavbar;
 
-const MobileNav = styled(motion.nav)`
-  position: absolute;
-  top: 62px;
+const MobileNav = styled.nav`
+  position: fixed;
+  top: 0;
   left: 0;
   height: 100%;
   width: 100%;

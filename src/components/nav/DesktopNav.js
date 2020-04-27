@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { useMenuContext } from "../../state";
 import { Squash as Hamburger } from "hamburger-react";
-import NavLinks from "./DesktopNavLinks";
+import NavLinks from "./NavLinks";
 import { useScroll } from "../../hooks";
 
 const DesktopNavbar = () => {
@@ -15,7 +15,7 @@ const DesktopNavbar = () => {
         Logo
       </Link>
       <NavLinks />
-      <Hamburger toggled={isMenuOpen} toggle={toggleMenu} />
+      <Hamburger toggled={isMenuOpen} toggle={toggleMenu} duration={0} />
     </DesktopNav>
   );
 };
@@ -44,6 +44,7 @@ const DesktopNav = styled.nav`
   width: 100%;
   height: 64px;
   padding: 0 60px;
+  z-index: 2;
 
   @media screen and (max-width: 768px) {
     justify-content: space-between;
