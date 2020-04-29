@@ -30,6 +30,7 @@ const DesktopNav = styled.nav`
 
   background: var(--bg);
   color: var(--text);
+  transition: all 150ms linear;
 
   ${(props) =>
     props.isScrolled &&
