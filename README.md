@@ -11,7 +11,7 @@ This project uses the following technologies:
 // Install dependencies
 npm install or yarn
 
-// Run client & server with concurrently
+// Run client
 npm run dev
 
 // Server runs on http://localhost:3000
