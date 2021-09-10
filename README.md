@@ -4,7 +4,6 @@ This project uses the following technologies:
 
 - [React](https://reactjs.org) for frontend
 - [Styled Components](https://styled-components.com/) for styling the app
-- [Framer Motion](https://www.framer.com/motion/) for animation
 
 ## Quick Start
 
