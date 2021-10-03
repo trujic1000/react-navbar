@@ -4,6 +4,7 @@ import { useToggle } from "../hooks";
 const initialState = {
   isMenuOpen: false,
   toggle: () => {},
+  closeMenu: () => {},
 };
 
 export const MenuContext = createContext(initialState);
