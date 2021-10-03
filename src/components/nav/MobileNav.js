@@ -5,19 +5,19 @@ import { useScrollFreeze, useMedia } from "../../hooks";
 import NavLinks from "./NavLinks";
 
 const MobileNavbar = () => {
-  const { isMobile } = useMedia();
   const { isMenuOpen, closeMenu } = useMenuContext();
+  const { isMobile } = useMedia();
   useScrollFreeze(isMenuOpen);
 
   useEffect(() => {
     if (!isMobile) {
       closeMenu();
     }
-  });
+  }, [isMobile]);
 
   return (
     <>
-      {isMobile && isMenuOpen && (
+      {isMenuOpen && (
         <MobileNav>
           <NavLinks />
         </MobileNav>
